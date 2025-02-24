@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Check Company</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: "KaiTi", serif;
+            background: url('chinese_pattern.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #8B0000;
+        }
+        .container {
+            margin-top: 50px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            display: inline-block;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .btn {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #C71585;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #8B0000;
+        }
+        .display {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+            padding: 20px;
+            border: 2px solid #8B0000;
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.9);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Random Check Company</h1>
+        <p>Who are the competitors of Commercial and Industrial Cleaning Products Suppliers and Waste Management Equipment Suppliers?</p>
+        <div class="display" id="display">Click Start Random</div>
+        <br>
+        <button class="btn" onclick="startRandom()">Start Random</button>
+        <button class="btn" onclick="stopRandom()">Stop Random</button>
+    </div>
+
+    <script>
+        let topics = [
+            "Upekkha Cleaning Equipment & Products Supplier Malaysia (UPEKKHA CLEANING)",
+            "iMEC Hygiene Sdn. Bhd. (IMEC)",
+            "Jacleen (JACLEEN)",
+            "JBS Hygiene (JBS HYGIENE)",
+            "Akasia Commercial Products Sdn. Bhd. (AKASIA CP)",
+            "FT Cleaning Supplies (FT CLEANING)",
+            "Chemin Hygiene Sdn. Bhd. (CHEMIN)",
+            "3M Malaysia (3M MALAYSIA)",
+            "Ngeam Engineering Works Sdn. Bhd. (NGEAM)",
+            "Ripoh Engineering Sdn. Bhd. (RIPOH)",
+            "Beston Malaysia (BESTON MALAYSIA)",
+            "MM Century (MM CENTURY)",
+            "SP Recycle Industry Sdn. Bhd. (SPRECO RECYCLE)"
+        ];
+        
+        let team = ["Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Hannah", "Ivy", "Jack"];
+        let selectedTeam = new Set();
+        let interval;
+
+        function startRandom() {
+            interval = setInterval(() => {
+                let randomIndex = Math.floor(Math.random() * topics.length);
+                document.getElementById('display').innerText = topics[randomIndex];
+            }, 100);
+        }
+
+        function stopRandom() {
+            clearInterval(interval);
+            let availableTopics = topics.filter(topic => !selectedTeam.has(topic));
+            if (availableTopics.length === 0) {
+                selectedTeam.clear(); // Reset selection if all topics are used
+                availableTopics = [...topics];
+            }
+            let randomIndex = Math.floor(Math.random() * availableTopics.length);
+            let chosenTopic = availableTopics[randomIndex];
+            selectedTeam.add(chosenTopic);
+            document.getElementById('display').innerText = chosenTopic;
+        }
+    </script>
+</body>
+</html>
